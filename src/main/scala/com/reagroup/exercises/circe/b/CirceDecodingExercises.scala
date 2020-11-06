@@ -53,10 +53,7 @@ object CirceDecodingExercises {
     // a single abstract method.
     implicit val personDecoder: Decoder[Person] = new Decoder[Person] {
       def apply(cursor: HCursor): Result[Person] = {
-        for {
-          name <- cursor.get[String]("name")
-          age <- cursor.get[Int]("age")
-        } yield Person(name, age)
+        ???
       }
     }
   }
@@ -79,8 +76,8 @@ object CirceDecodingExercises {
     * - https://www.parsonsmatt.org/2017/01/07/how_do_type_classes_differ_from_interfaces.html
     */
   def decodePerson(json: Json): Either[DecodingFailure, Person] = {
-    // This says "Turn this Json to a Person"
-    json.as[Person]
+    // Turn this Json to a Person
+    ???
   }
 
   /**
@@ -97,9 +94,9 @@ object CirceDecodingExercises {
     */
   def decodePersonSemiAuto(json: Json): Either[DecodingFailure, Person] = {
     import io.circe.generic.semiauto._
-    implicit val personDecoder: Decoder[Person] = deriveDecoder
+    implicit val personDecoder: Decoder[Person] = ???
 
-    json.as[Person]
+    ???
   }
 
   /**
@@ -109,8 +106,8 @@ object CirceDecodingExercises {
     */
   def strToPerson(str: String): Either[Error, Person] = {
     import io.circe.generic.semiauto._
-    implicit val personDecoder: Decoder[Person] = deriveDecoder
+    implicit val personDecoder: Decoder[Person] = ???
 
-    parser.decode(str)
+    ???
   }
 }

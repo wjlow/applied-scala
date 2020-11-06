@@ -17,10 +17,7 @@ object CirceEncodingExercises {
       * "single abstract method", this is what it looks like.
       */
     implicit val personEncoder: Encoder[Person] = (p: Person) => {
-      Json.obj(
-        "name" -> p.name.asJson,
-        "age" -> p.age.asJson
-      )
+      ???
     }
   }
 
@@ -32,7 +29,7 @@ object CirceEncodingExercises {
     * Maybe now you might be more intrigued to read about type classes.
     */
   def encodePerson(person: Person): Json = {
-    person.asJson
+    ???
   }
 
 
@@ -43,7 +40,7 @@ object CirceEncodingExercises {
     */
   def encodePersonSemiAuto(person: Person): Json = {
     import io.circe.generic.semiauto._
-    implicit val personEncoder: Encoder[Person] = deriveEncoder
-    person.asJson
+    implicit val personEncoder: Encoder[Person] = ???
+    ???
   }
 }
