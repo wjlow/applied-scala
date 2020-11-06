@@ -8,13 +8,13 @@ object CirceEncodingExercises {
   case class Person(name: String, age: Int)
 
   /**
-    * Defining encoders and decoders in the companion object means that Scala will always be able to find them.
-    *
-    * Note: they may be "shadowed" by a higher priority implicit
+    * Now we know how to decode. Let's write implement the Encoder type class for Person.
     */
   object Person {
     /**
-      * Create an `Encoder` instance for `Person` by implementing the `apply` method below.
+      * Create an `Encoder` instance for `Person` by implementing the lambda.
+      * Note: if you haven't converted the personDecoder in the previous exercise into a
+      * "single abstract method", this is what it looks like.
       */
     implicit val personEncoder: Encoder[Person] = (p: Person) => {
       Json.obj(
@@ -25,6 +25,12 @@ object CirceEncodingExercises {
   }
 
 
+  /**
+    * Let's create a JSON object from our Person.
+    *
+    * Notice how Person now has an additional method?
+    * Maybe now you might be more intrigued to read about type classes.
+    */
   def encodePerson(person: Person): Json = {
     person.asJson
   }
