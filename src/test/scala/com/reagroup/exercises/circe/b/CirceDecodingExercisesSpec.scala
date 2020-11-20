@@ -1,62 +1,13 @@
-package com.reagroup.exercises.circe
+package com.reagroup.exercises.circe.b
 
-import org.specs2.mutable.Specification
-import CirceExercises._
-import io.circe.{DecodingFailure, Json, ParsingFailure}
-import io.circe.syntax._
+import CirceDecodingExercises._
+import io.circe._
 import io.circe.literal._
+import io.circe.syntax._
+import org.specs2.mutable.Specification
 
-class CirceExercisesSpec extends Specification {
 
-  "strToJson" should {
-
-    "parse valid Json" in {
-      val json = json"""{"name": "scala"}"""
-      val errOrJson = strToJson(json.noSpaces)
-      errOrJson must_=== Right(json)
-    }
-
-    "return error for invalid Json" in {
-      val errOrJson = strToJson("""{"scala"}""")
-      errOrJson must beLeft
-    }
-
-  }
-
-  "encodePerson" should {
-
-    "convert Person to Json" in {
-      val person = Person("scala", 20)
-      val actual = encodePerson(person)
-      val expected = Json.obj("name" -> "scala".asJson, "age" -> 20.asJson)
-
-      actual must_=== expected
-    }
-
-  }
-
-  "encodePersonDifferently" should {
-    "convert Person to Json" in {
-      val person = Person("scala", 20)
-      val actual = encodePersonDifferently(person)
-      val expected = Json.obj("different_name" -> "scala".asJson, "different_age" -> 20.asJson)
-
-      actual must_=== expected
-    }
-  }
-
-  "encodePersonSemiAuto" should {
-
-    "convert Person to Json" in {
-      val person = Person("scala", 20)
-      val actual = encodePersonSemiAuto(person)
-      val expected = Json.obj("name" -> "scala".asJson, "age" -> 20.asJson)
-
-      actual must_=== expected
-    }
-
-  }
-
+class CirceDecodingExercisesSpec extends Specification {
   "decodePerson" should {
 
     "convert valid Json to Person" in {
@@ -123,5 +74,4 @@ class CirceExercisesSpec extends Specification {
     }
 
   }
-
 }
