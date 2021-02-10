@@ -66,7 +66,7 @@ Using portable SBT
 
 | Time  | Topic/Exercise                                                                                                          |
 |-------|-------------------------------------------------------------------------------------------------------------------------|
-| 9.15  | :microphone: Day 1 Keynote                                                                                              |
+| 9.15  | :microphone: Day 1 Intro and IO presentation                                                                                              |
 | 10.00 | Morning break                                                                                                           |
 | 10.15 | :soccer: [IO Exercises](src/main/scala/com/reagroup/exercises/io/IOExercises.scala)                                     |
 | 11.30 | :computer: Intro to Http4s (Presentation)                                                                               |
@@ -82,7 +82,7 @@ Using portable SBT
 
 | Time  | Topic/Exercise                                                                                                 |
 |-------|----------------------------------------------------------------------------------------------------------------|
-| 9.15  | :microphone: Day 2 Keynote                                                                                     |
+| 9.15  | :microphone: Day 2 Intro                                                                                      |
 | 10.00 | :computer: Endpoint Ex.2 (Continued)                                                                           |
 | 10.25 | Morning break                                                                                                  |
 | 10.40 | Validated and Traverse Theory (Presentation)                                                                   |
