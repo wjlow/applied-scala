@@ -10,7 +10,7 @@ Similar to [Intro to Scala](https://github.com/wjlow/intro-to-scala#pre-requisit
 
 ```
 brew tap homebrew/cask-versions
-brew cask install homebrew/cask-versions/adoptopenjdk8
+brew install homebrew/cask-versions/adoptopenjdk8
 ```
 
 2. Before the course, please run the following:
