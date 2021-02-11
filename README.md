@@ -69,7 +69,7 @@ Using portable SBT
 | 9.15  | :microphone: Day 1 Intro and IO presentation                                                                                              |
 | 10.00 | Morning break                                                                                                           |
 | 10.15 | :soccer: [IO Exercises](src/main/scala/com/reagroup/exercises/io/IOExercises.scala)                                     |
-| 11.30 | :computer: Intro to Http4s (Presentation)                                                                               |
+| 11.15 | :computer: Intro to Http4s (Presentation)                                                                               |
 | 12.00 | Lunch                                                                                                                   |
 | 13.00 | :soccer: [Circe Exercises](src/main/scala/com/reagroup/exercises/circe/CirceExercises.scala)                            |
 | 14.00 | Code walkthrough: [GET all movies (no exercises)](src/main/scala/com/reagroup/appliedscala/urls/fetchallmovies)         |
@@ -83,16 +83,16 @@ Using portable SBT
 | Time  | Topic/Exercise                                                                                                 |
 |-------|----------------------------------------------------------------------------------------------------------------|
 | 9.15  | :microphone: Day 2 Intro                                                                                      |
-| 10.00 | :computer: Endpoint Ex.2 (Continued)                                                                           |
-| 10.25 | Morning break                                                                                                  |
-| 10.40 | Validated and Traverse Theory (Presentation)                                                                   |
-| 11.30 | :soccer: [Validated Exercises](src/main/scala/com/reagroup/exercises/validated/ValidationExercises.scala)      |
-| 12.30 | Lunch                                                                                                          |
-| 13.30 | :computer: [Endpoint Ex.3: POST movie](./src/main/scala/com/reagroup/appliedscala/urls/savemovie)              |
-| 15.00 | Afternoon break                                                                                                |
-| 15.15 | :computer: [Endpoint Ex.4: POST movie/id/review](./src/main/scala/com/reagroup/appliedscala/urls/savereview) |
-| 16:45 | :microphone: Wrap-up + Endpoint Ex.2 revisited (w/ Traverse)                                                   |
-| 17:00 | End     
+| 10.00 | Morning break                                                                                                  |
+| 10.15 | Validated and Traverse Theory (Presentation)                                                                   |
+| 11.15 | :soccer: [Validated Exercises](src/main/scala/com/reagroup/exercises/validated/ValidationExercises.scala)      |
+| 12.15 | Lunch                                                                                                          |
+| 13.15 | :computer: [Endpoint Ex.3: POST movie](./src/main/scala/com/reagroup/appliedscala/urls/savemovie)              |
+| 14.45 | Afternoon break                                                                                                |
+| 15.00 | :computer: [Endpoint Ex.4: POST movie/id/review](./src/main/scala/com/reagroup/appliedscala/urls/savereview) |
+| 16:15 | :microphone: Wrap-up + Endpoint Ex.2 revisited (w/ Traverse)                                                   |
+| 16:45 | End     
+
 ## Further reading
 
 - [FAQ](docs/faq.md)
