@@ -34,7 +34,7 @@ object IOExercises {
     * instead of relying on a mocking framework.
     */
   def helloWorld(logger: String => Unit): IO[Unit] =
-    ???
+    IO(logger("hello world"))
 
   /**
     * Difference between `IO.apply` and `IO.pure`:
@@ -57,7 +57,7 @@ object IOExercises {
     * Hint: https://typelevel.org/cats-effect/datatypes/io.html#raiseerror
     */
   def alwaysFailingTask(): IO[Unit] =
-    ???
+    IO.raiseError(new RuntimeException())
 
   /**
     * This is a data type that represents an exception in our program.
