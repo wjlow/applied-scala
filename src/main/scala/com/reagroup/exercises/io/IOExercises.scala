@@ -20,8 +20,7 @@ object IOExercises {
     *
     * Hint: You want to look for a function in IO with the type signature A => IO[A]
     */
-  def immediatelyExecutingIO(): IO[Int] =
-    ???
+  def immediatelyExecutingIO(): IO[Int] = IO.pure(43)
 
   /**
     * Create an IO which when executed logs “hello world” (using `logger`)
