@@ -25,6 +25,11 @@ class AppRoutes(fetchAllMoviesHandler: IO[Response[IO]],
     case GET -> Root / "movies" / LongVar(id) => ???
     case req @ POST -> Root / "movies" => saveMovieHandler(req)
     case req @ POST -> Root / "movies" / LongVar(id) / "reviews" => saveReviewHandler(id, req)
+    case req @ GET -> Root / "hello" => helloWorld(req)
+  }
+
+  def helloWorld(req: Request[IO]): IO[Response[IO]] = {
+    Ok("Hello, world!")
   }
 
 }
