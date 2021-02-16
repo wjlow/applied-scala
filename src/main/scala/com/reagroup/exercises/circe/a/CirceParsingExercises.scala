@@ -27,7 +27,7 @@ object CirceParsingExercises {
     * Why is the return type an `Either`?
     */
   def strToJson(str: String): Either[ParsingFailure, Json] = {
-    ???
+    parser.parse(str)
   }
 
   /**

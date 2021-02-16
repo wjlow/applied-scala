@@ -16,8 +16,13 @@ object CirceEncodingExercises {
       * Note: if you haven't converted the personDecoder in the previous exercise into a
       * "single abstract method", this is what it looks like.
       */
-    implicit val personEncoder: Encoder[Person] = (p: Person) => {
-      ???
+    implicit val personEncoder: Encoder[Person] = new Encoder[Person] {
+      override def apply(a: Person): Json = {
+        Json.obj(
+          "name" -> a.name.asJson,
+          "age" -> a.age.asJson
+        )
+      }
     }
   }
 
@@ -29,7 +34,7 @@ object CirceEncodingExercises {
     * Maybe now you might be more intrigued to read about type classes.
     */
   def encodePerson(person: Person): Json = {
-    ???
+    person.asJson
   }
 
 
@@ -40,7 +45,7 @@ object CirceEncodingExercises {
     */
   def encodePersonSemiAuto(person: Person): Json = {
     import io.circe.generic.semiauto._
-    implicit val personEncoder: Encoder[Person] = ???
-    ???
+    implicit val personEncoder: Encoder[Person] = deriveEncoder
+    person.asJson
   }
 }

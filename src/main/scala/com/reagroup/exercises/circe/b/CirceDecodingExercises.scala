@@ -51,10 +51,11 @@ object CirceDecodingExercises {
     // note: a lot of boilerplate can be removed. Try pressing alt-enter with your
     // cursor over "new Decoder[Person]" above. This works because Decoder is a trait with
     // a single abstract method.
-    implicit val personDecoder: Decoder[Person] = new Decoder[Person] {
-      def apply(cursor: HCursor): Result[Person] = {
-        ???
-      }
+    implicit val personDecoder: Decoder[Person] = (c: HCursor) => {
+      for {
+        age <- c.downField("age").as[Int]
+        name <- c.downField("name").as[String]
+      } yield Person(name, age)
     }
   }
 
@@ -77,7 +78,7 @@ object CirceDecodingExercises {
     */
   def decodePerson(json: Json): Either[DecodingFailure, Person] = {
     // Turn this Json to a Person
-    ???
+    json.as[Person]
   }
 
   /**
@@ -94,9 +95,9 @@ object CirceDecodingExercises {
     */
   def decodePersonSemiAuto(json: Json): Either[DecodingFailure, Person] = {
     import io.circe.generic.semiauto._
-    implicit val personDecoder: Decoder[Person] = ???
+    implicit val personDecoder: Decoder[Person] = deriveDecoder
 
-    ???
+    json.as[Person]
   }
 
   /**
@@ -106,8 +107,8 @@ object CirceDecodingExercises {
     */
   def strToPerson(str: String): Either[Error, Person] = {
     import io.circe.generic.semiauto._
-    implicit val personDecoder: Decoder[Person] = ???
+    implicit val personDecoder: Decoder[Person] = deriveDecoder
 
-    ???
+    parser.decode(str)
   }
 }
