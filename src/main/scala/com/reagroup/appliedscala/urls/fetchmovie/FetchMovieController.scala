@@ -20,6 +20,10 @@ class FetchMovieController(fetchMovie: MovieId => IO[Option[Movie]]) extends Htt
     * Delegate the error case to the `ErrorHandler`.
     */
   def fetch(movieId: Long): IO[Response[IO]] =
-    ???
+    fetchMovie(MovieId(movieId)).attempt.flatMap {
+      case Left(error) => ErrorHandler(error)
+      case Right(Some(movie)) => Ok(movie)
+      case Right(None) => NotFound()
+    }
 
 }
