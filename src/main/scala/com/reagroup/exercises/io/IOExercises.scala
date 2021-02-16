@@ -71,7 +71,8 @@ object IOExercises {
     * If `msg` is not empty, log out the message using the `logger`
     */
   def logMessageOrFailIfEmpty(msg: String, logger: String => Unit): IO[Unit] =
-    ???
+    if (msg.isEmpty) IO.raiseError(AppException("Log must not be empty"))
+    else IO(logger(msg))
 
   /**
     * We're going to work with temperature next. We start off by creating tiny types for `Fahrenheit` and `Celsius`.
@@ -91,7 +92,7 @@ object IOExercises {
     * using `cToF` defined above.
     */
   def getCurrentTempInF(getCurrentTemp: IO[Celsius]): IO[Fahrenheit] =
-    ???
+    getCurrentTemp.map(cToF)
 
   /**
     * Suppose the Celsius to Fahrenheit conversion is complex so we have decided to refactor it out to a remote
@@ -103,8 +104,9 @@ object IOExercises {
     * Again, our remote service call is passed in as an input argument so we can easily unit test this function
     * without the need for a mocking framework.
     */
-  def getCurrentTempInFAgain(getCurrentTemp: IO[Celsius], converter: Celsius => IO[Fahrenheit]): IO[Fahrenheit] =
-    ???
+  def getCurrentTempInFAgain(getCurrentTemp: IO[Celsius], converter: Celsius => IO[Fahrenheit]): IO[Fahrenheit] = {
+    getCurrentTemp.flatMap(converter)
+  }
 
 
   /**
@@ -122,7 +124,10 @@ object IOExercises {
     * Hint: https://typelevel.org/cats-effect/datatypes/io.html#attempt
     */
   def showCurrentTempInF(currentTemp: IO[Celsius], converter: Celsius => IO[Fahrenheit]): IO[String] =
-    ???
+    getCurrentTempInFAgain(currentTemp, converter).attempt.map {
+      case Left(error) => error.getMessage
+      case Right(fahrenheit) => s"The temperature is ${fahrenheit.value}"
+    }
 
   /**
     * `UsernameError` and `Username` are tiny types we are going to use for the next exercise.
