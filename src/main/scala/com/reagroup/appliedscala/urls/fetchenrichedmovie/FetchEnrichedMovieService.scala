@@ -16,12 +16,30 @@ class FetchEnrichedMovieService(fetchMovie: MovieId => IO[Option[Movie]],
     * Hint: We know we are going to be chaining multiple effects in `IO` so let's start a for-comprehension.
     * Also pattern match on `Option` if you're stuck!
     **/
-  def fetch(movieId: MovieId): IO[Option[EnrichedMovie]] = ???
+  def fetch(movieId: MovieId): IO[Option[EnrichedMovie]] = {
+    // Call fetchMovie
+    // Call enrichMovieWithMetascore
+    val x: IO[Option[IO[EnrichedMovie]]] = fetchMovie(movieId)
+      .map(maybeMovie => maybeMovie
+        .map(movie => enrichMovieWithMetascore(movie)))
+
+    x.flatMap {
+      case Some(ioEnrichedMovie) => ioEnrichedMovie.map(enrichedMovie => Some(enrichedMovie))
+      case None => IO.pure(None)
+    }
+  }
 
   /**
     * Given a `Movie`, we can call `fetchMetascore` using the `name` of the `Movie`.
     * If no `Metascore` is found, raise an `EnrichmentFailure` using `IO.raiseError`.
     **/
-  private def enrichMovieWithMetascore(movie: Movie): IO[EnrichedMovie] = ???
+  private def enrichMovieWithMetascore(movie: Movie): IO[EnrichedMovie] = {
+    // Call fetchMetascore
+    // Raise EnrichmentFailure if Metascore does not exist
+    fetchMetascore(movie.name).flatMap {
+      case Some(score) => IO.pure(EnrichedMovie(movie, score))
+      case None => IO.raiseError(EnrichmentFailure(movie.name))
+    }
+  }
 
 }

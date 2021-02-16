@@ -2,13 +2,14 @@ package com.reagroup.appliedscala.urls.repositories
 
 import cats.effect.IO
 import com.reagroup.appliedscala.urls.fetchenrichedmovie.Metascore
+import io.circe
 import io.circe.parser.decode
 import org.http4s._
 import org.http4s.implicits._
 import org.http4s.client.Client
 
 class Http4sMetascoreRepository(httpClient: Client[IO], apiKey: String) {
-
+  // http://www.omdbapi.com/?t=Titanic&apikey=7f9b5b06
   /**
     * For the purpose of this exercise, we return a `None` if we are unable
     * to decode a `Metascore` out of the response from OMDB.
@@ -18,7 +19,8 @@ class Http4sMetascoreRepository(httpClient: Client[IO], apiKey: String) {
       .withQueryParam("apikey", apiKey)
       .withQueryParam("t", movieName)
     val ioStr: IO[String] = httpClient.expect[String](omdbURI)
-    ???
+
+    ioStr.map(jsonStr => decode[Metascore](jsonStr).toOption)
   }
 
 }
