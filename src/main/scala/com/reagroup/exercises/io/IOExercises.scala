@@ -145,8 +145,13 @@ object IOExercises {
   /**
     * Use `mkUsername` to create a `Username` and if successful print the username, otherwise fail with a UsernameError.
     */
-  def mkUsernameThenPrint(username: String, logger: String => Unit): IO[Unit] =
-    ???
+  def mkUsernameThenPrint(username: String, logger: String => Unit): IO[Unit] = {
+//    mkUsername(username) match {
+//      case Left(value) => IO.raiseError(value)
+//      case Right(value) =>IO.pure(value)
+//    }
+    IO.fromEither(mkUsername(username)).map(username => logger(username.value))
+  }
 
 
   /**
@@ -159,9 +164,11 @@ object IOExercises {
     * > executing step 3
     */
   def explain(logger: String => Unit): IO[Unit] = {
-    IO(logger("executing step 1"))
-    IO(logger("executing step 2"))
-    IO(logger("executing step 3"))
+    for {
+      _ <- IO(logger("executing step 1"))
+      _ <- IO (logger("executing step 2"))
+      _ <- IO (logger("executing step 3"))
+    } yield ()
   }
 
   /**
@@ -171,6 +178,6 @@ object IOExercises {
     * Hint: https://typelevel.org/cats-effect/datatypes/io.html#unsaferunsync
     */
   def execute[A](io: IO[A]): A =
-    ???
+    io.unsafeRunSync()
 
 }
