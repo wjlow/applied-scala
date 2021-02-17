@@ -19,14 +19,16 @@ class FetchEnrichedMovieService(fetchMovie: MovieId => IO[Option[Movie]],
   def fetch(movieId: MovieId): IO[Option[EnrichedMovie]] = {
     // Call fetchMovie
     // Call enrichMovieWithMetascore
-    val x: IO[Option[IO[EnrichedMovie]]] = fetchMovie(movieId)
-      .map(maybeMovie => maybeMovie
-        .map(movie => enrichMovieWithMetascore(movie)))
+//    val x: IO[Option[IO[EnrichedMovie]]] = fetchMovie(movieId)
+//      .map(maybeMovie => maybeMovie
+//        .map(movie => enrichMovieWithMetascore(movie)))
+//
+//    x.flatMap {
+//      case Some(ioEnrichedMovie) => ioEnrichedMovie.map(enrichedMovie => Some(enrichedMovie))
+//      case None => IO.pure(None)
+//    }
 
-    x.flatMap {
-      case Some(ioEnrichedMovie) => ioEnrichedMovie.map(enrichedMovie => Some(enrichedMovie))
-      case None => IO.pure(None)
-    }
+    fetchMovie(movieId).flatMap(maybeMovie => maybeMovie.traverse(movie => enrichMovieWithMetascore(movie)))
   }
 
   /**
