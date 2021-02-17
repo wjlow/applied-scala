@@ -4,6 +4,7 @@ import cats.data.Validated._
 import cats.data.{NonEmptyList, ValidatedNel}
 import cats.effect.IO
 import com.reagroup.appliedscala.models._
+import com.reagroup.appliedscala.urls.ErrorHandler
 import io.circe.{Encoder, Json}
 import io.circe.syntax._
 import org.http4s._
@@ -18,7 +19,16 @@ class SaveMovieController(saveNewMovie: NewMovieRequest => IO[ValidatedNel[Movie
     * 3. Pattern match and convert every case into an HTTP response. To Pattern match on `Validated`, use `Invalid` and `Valid`.
     * Hint: Use `Created(...)` to return a 201 response when the movie is successfully saved and `BadRequest(...)` to return a 403 response when there are errors.
     */
-  def save(req: Request[IO]): IO[Response[IO]] =
-    ???
+  def save(req: Request[IO]): IO[Response[IO]] = {
+    for {
+      newMovie <- req.as[NewMovieRequest]
+      maybeMovieId <- saveNewMovie(newMovie).attempt
+      resp <- maybeMovieId match {
+        case Left(error) => ErrorHandler(error)
+        case Right(Invalid(errors)) => BadRequest(errors)
+        case Right(Valid(movieId)) => Created(movieId)
+      }
+    } yield resp
+  }
 
 }
