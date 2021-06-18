@@ -1,4 +1,4 @@
-package com.reagroup.exercises.circe.b
+package com.reagroup.exercises.circe.decoding
 
 import io.circe.Decoder.Result
 import io.circe._
@@ -59,7 +59,7 @@ object CirceDecodingExercises {
   }
 
   /**
-    * Use the `.as` method on JSON to specify the type you want to cast the JSON to.
+    * Use the `.as` method on JSON to specify the type you want to convert the JSON to.
     *
     * Since we're likely to be casting it to a `Person`,
     * Scala will look for an implicit `Decoder[Person]` in the following places:
@@ -76,7 +76,7 @@ object CirceDecodingExercises {
     * - https://www.parsonsmatt.org/2017/01/07/how_do_type_classes_differ_from_interfaces.html
     */
   def decodePerson(json: Json): Either[DecodingFailure, Person] = {
-    // Turn this Json to a Person
+    // Turn this Json to a Person using the `.as` method
     ???
   }
 

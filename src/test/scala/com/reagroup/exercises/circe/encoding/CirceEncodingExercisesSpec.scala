@@ -1,4 +1,4 @@
-package com.reagroup.exercises.circe.c
+package com.reagroup.exercises.circe.encoding
 
 import CirceEncodingExercises._
 import io.circe._
