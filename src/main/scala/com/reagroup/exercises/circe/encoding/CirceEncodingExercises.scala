@@ -1,8 +1,12 @@
-package com.reagroup.exercises.circe.c
+package com.reagroup.exercises.circe.encoding
 
 import io.circe._
 import io.circe.syntax._
 
+/**
+ * We suggest you go through CirceDecodingExercises before this.
+ * There are additional docs in that file that teach you some of the concepts in here.
+ */
 object CirceEncodingExercises {
 
   case class Person(name: String, age: Int)
@@ -25,8 +29,7 @@ object CirceEncodingExercises {
   /**
     * Let's create a JSON object from our Person.
     *
-    * Notice how Person now has an additional method?
-    * Maybe now you might be more intrigued to read about type classes.
+    * Use the `.as` extension method on `person` to convert it to a `Json`
     */
   def encodePerson(person: Person): Json = {
     ???

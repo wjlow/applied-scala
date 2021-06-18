@@ -1,4 +1,4 @@
-package com.reagroup.exercises.circe.a
+package com.reagroup.exercises.circe.parsing
 
 import CirceParsingExercises.strToJson
 import io.circe.literal._
